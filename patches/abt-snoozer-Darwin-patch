@@ -1,0 +1,11 @@
+--- configure.orig	2016-06-10 11:18:24.000000000 -0500
++++ configure	2016-06-10 11:18:42.000000000 -0500
+@@ -5446,7 +5446,7 @@
+                 CPPFLAGS="$CPPFLAGS -I${with_libev}/include"
+                 # note: add rpath too because stock libev install uses
+                 # shared libs
+-                LDFLAGS="$LDFLAGS -Wl,-rpath=${with_libev}/lib -L${with_libev}/lib"
++                LDFLAGS="$LDFLAGS -L${with_libev}/lib"
+                 SNOOZER_PKGCONFIG_LIBS="${SNOOZER_PKGCONFIG_LIBS} -L${with_libev}/lib -lev -lm"
+ 
+ else
