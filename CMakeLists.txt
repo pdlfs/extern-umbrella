@@ -399,7 +399,7 @@ GenDownloadConfig (bake_download bake-bulk bake-bulk.tar.gz
 )
 
 ExternalProject_Add(bake-bulk
-    DEPENDS abt-snoozer mercury nvml
+    DEPENDS margo mercury nvml
     ${bake_download}
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=${CMAKE_INSTALL_PREFIX}
         PKG_CONFIG_PATH=${CMAKE_INSTALL_PREFIX}/lib/pkgconfig
