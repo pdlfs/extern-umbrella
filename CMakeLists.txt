@@ -343,6 +343,7 @@ endif ()
 
 GenDownloadConfig (abts_download abt-snoozer abt-snoozer.tar.gz
     GIT_REPOSITORY "https://xgitlab.cels.anl.gov/sds/abt-snoozer.git"
+    TLS_VERIFY False
     ### GIT_TAG master
 )
 
@@ -370,6 +371,7 @@ ExternalProject_Add_Step(abt-snoozer prepare
 #
 GenDownloadConfig (margo_download margo margo.tar.gz
     GIT_REPOSITORY "https://xgitlab.cels.anl.gov/sds/margo.git"
+    TLS_VERIFY False
     ### GIT_TAG master
 )
 
@@ -395,6 +397,7 @@ ExternalProject_Add_Step(margo prepare
 #
 GenDownloadConfig (bake_download bake-bulk bake-bulk.tar.gz
     GIT_REPOSITORY "git@xgitlab.cels.anl.gov:sds/bake-bulk.git"
+    TLS_VERIFY False
     ### GIT_TAG master
 )
 
