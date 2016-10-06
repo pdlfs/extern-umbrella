@@ -448,3 +448,20 @@ ExternalProject_Add(automake
 
 # only do automake if we directly asked for it (mainly for travis)
 set_property (TARGET automake PROPERTY EXCLUDE_FROM_ALL True)
+
+#
+# autoconf
+#
+GenDownloadConfig (autoconf_download autoconf autoconf-2.69.tar.gz
+    URL http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
+    URL_MD5 82d05e03b93e45f5a39b828dc9c6c29b
+    ### GIT_TAG master
+)
+ExternalProject_Add(autoconf
+    ${autoconf_download}
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
+       --prefix=${CMAKE_INSTALL_PREFIX}
+)
+
+# only do autoconf if we directly asked for it (mainly for travis)
+set_property (TARGET autoconf PROPERTY EXCLUDE_FROM_ALL True)
