@@ -414,3 +414,21 @@ ExternalProject_Add_Step(bake-bulk prepare
     WORKING_DIRECTORY <SOURCE_DIR>
 )
 
+#
+# mpich
+#
+GenDownloadConfig (mpich_download mpich mpich-3.2.tar.gz
+    URL http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz
+    URL_MD5 f414cfa77099cd1fa1a5ae4e22db508a
+    ### GIT_TAG master
+)
+ExternalProject_Add(mpich
+    ${mpich_download}
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
+       --disable-fortran
+       --prefix=${CMAKE_INSTALL_PREFIX}
+)
+
+# only do mpich if we directly asked for it
+set_property (TARGET mpich PROPERTY EXCLUDE_FROM_ALL True)
+
