@@ -342,7 +342,7 @@ if (EXISTS ${abtspatch})
 endif ()
 
 GenDownloadConfig (abts_download abt-snoozer abt-snoozer.tar.gz
-    GIT_REPOSITORY "git@xgitlab.cels.anl.gov:sds/abt-snoozer.git"
+    GIT_REPOSITORY "https://xgitlab.cels.anl.gov/sds/abt-snoozer.git"
     ### GIT_TAG master
 )
 
@@ -369,7 +369,7 @@ ExternalProject_Add_Step(abt-snoozer prepare
 # margo
 #
 GenDownloadConfig (margo_download margo margo.tar.gz
-    GIT_REPOSITORY "git@xgitlab.cels.anl.gov:sds/margo.git"
+    GIT_REPOSITORY "https://xgitlab.cels.anl.gov/sds/margo.git"
     ### GIT_TAG master
 )
 
