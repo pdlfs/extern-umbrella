@@ -465,3 +465,20 @@ ExternalProject_Add(autoconf
 
 # only do autoconf if we directly asked for it (mainly for travis)
 set_property (TARGET autoconf PROPERTY EXCLUDE_FROM_ALL True)
+
+#
+# libtool
+#
+GenDownloadConfig (libtool_download libtool libtool-2.4.6.tar.gz
+    URL http://ftp.gnu.org/gnu/libtool/libtool-2.4.6.tar.gz
+    URL_MD5 addf44b646ddb4e3919805aa88fa7c5e
+    ### GIT_TAG master
+)
+ExternalProject_Add(libtool
+    ${libtool_download}
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
+       --prefix=${CMAKE_INSTALL_PREFIX}
+)
+
+# only do libtool if we directly asked for it (mainly for travis)
+set_property (TARGET libtool PROPERTY EXCLUDE_FROM_ALL True)
