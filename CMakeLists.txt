@@ -432,3 +432,19 @@ ExternalProject_Add(mpich
 # only do mpich if we directly asked for it
 set_property (TARGET mpich PROPERTY EXCLUDE_FROM_ALL True)
 
+#
+# automake
+#
+GenDownloadConfig (automake_download automake automake-1.15.tar.gz
+    URL http://ftp.gnu.org/gnu/automake/automake-1.15.tar.gz
+    URL_MD5 716946a105ca228ab545fc37a70df3a3
+    ### GIT_TAG master
+)
+ExternalProject_Add(automake
+    ${automake_download}
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
+       --prefix=${CMAKE_INSTALL_PREFIX}
+)
+
+# only do automake if we directly asked for it (mainly for travis)
+set_property (TARGET automake PROPERTY EXCLUDE_FROM_ALL True)
