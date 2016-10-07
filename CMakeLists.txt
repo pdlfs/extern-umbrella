@@ -276,7 +276,7 @@ ExternalProject_Add (nvml
 #
 # argobots
 #
-set (argopatch 
+set (argopatch
     "${CMAKE_SOURCE_DIR}/patches/argobots-${CMAKE_SYSTEM_NAME}-patch")
 if (EXISTS ${argopatch})
     set (argopatchcmd patch -p1 -i ${argopatch} -d <SOURCE_DIR>)
@@ -485,3 +485,26 @@ ExternalProject_Add(libtool
 
 # only do libtool if we directly asked for it (mainly for travis)
 set_property (TARGET libtool PROPERTY EXCLUDE_FROM_ALL True)
+
+#
+# gcc
+#
+GenDownloadConfig (gcc_download gcc gcc-2.4.6.tar.gz
+    URL https://ftp.gnu.org/gnu/gcc/gcc-6.2.0/gcc-6.2.0.tar.gz
+    URL_MD5 2f162bc9b90665c2a0767912dfa67f24
+    ### GIT_TAG master
+)
+ExternalProject_Add(gcc
+    ${gcc_download}
+    # config copied from mercury travis config
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
+       --prefix=${CMAKE_INSTALL_PREFIX} --disable-bootstrap
+       --enable-languages=c,c++ --enable-shared --enable-threads=posix
+       --enable-checking=release --with-system-zlib --enable-linker-build-id
+       --with-linker-hash-style=gnu --enable-initfini-array --disable-libgcj
+       --without-isl --enable-gnu-indirect-function --with-tune=generic
+       --disable-multilib
+)
+
+# only do gcc if we directly asked for it (mainly for travis)
+set_property (TARGET gcc PROPERTY EXCLUDE_FROM_ALL True)
