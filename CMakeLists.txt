@@ -498,7 +498,7 @@ ExternalProject_Add(gcc
     ${gcc_download}
     # config copied from mercury travis config
     CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
-       --prefix=${CMAKE_INSTALL_PREFIX} --disable-bootstrap
+       --prefix=${CMAKE_INSTALL_PREFIX}/gcc --disable-bootstrap
        --enable-languages=c,c++ --enable-shared --enable-threads=posix
        --enable-checking=release --with-system-zlib --enable-linker-build-id
        --with-linker-hash-style=gnu --enable-initfini-array --disable-libgcj
