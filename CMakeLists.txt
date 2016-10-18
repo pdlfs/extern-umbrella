@@ -249,6 +249,23 @@ ExternalProject_Add (glog
 )
 
 #
+# libuuid
+#
+GenDownloadConfig (libuuid_download libuuid libuuid.tar.gz
+    GIT_REPOSITORY "http://git.code.sf.net/p/libuuid/code"
+    GIT_TAG libuuid-1.0.3
+)
+
+ExternalProject_Add (libuuid
+    LIST_SEPARATOR ^^                    # for passing CMAKE_PREFIX_PATH
+    ${libuuid_download}
+    COMMAND ${CMAKE_SOURCE_DIR}/scripts/run-autotools <SOURCE_DIR>
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
+         --prefix=${CMAKE_INSTALL_PREFIX} ${ibv}
+    UPDATE_COMMAND ""
+)
+
+#
 # nvml
 #
 set (nvmlpatch "${CMAKE_SOURCE_DIR}/patches/nvml-patch")
@@ -402,7 +419,7 @@ GenDownloadConfig (bake_download bake-bulk bake-bulk.tar.gz
 )
 
 ExternalProject_Add(bake-bulk
-    DEPENDS margo mercury nvml
+    DEPENDS margo mercury nvml libuuid
     ${bake_download}
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=${CMAKE_INSTALL_PREFIX}
         PKG_CONFIG_PATH=${CMAKE_INSTALL_PREFIX}/lib/pkgconfig

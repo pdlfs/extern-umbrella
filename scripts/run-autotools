@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# run-autotools runs autotools to create configuration files
+# 18-Oct-2016  gamvrosi@cs.cmu.edu
+#
+
+echo run-autotools: running in $1
+cd $1
+make distclean
+libtoolize
+aclocal
+autoheader
+automake --add-missing
+autoconf
