@@ -251,9 +251,10 @@ ExternalProject_Add (glog
 #
 # libuuid
 #
-GenDownloadConfig (libuuid_download libuuid libuuid.tar.gz
-    GIT_REPOSITORY "http://git.code.sf.net/p/libuuid/code"
-    GIT_TAG libuuid-1.0.3
+GenDownloadConfig (libuuid_download libuuid util-linux-2.28.2.tar.gz
+    URL https://www.kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.2.tar.gz
+    URL_MD5 8ddb063284584ae99c660f4c9b3abb39
+    TIMEOUT 10
 )
 
 ExternalProject_Add (libuuid
@@ -261,7 +262,8 @@ ExternalProject_Add (libuuid
     ${libuuid_download}
     COMMAND ${CMAKE_SOURCE_DIR}/scripts/run-autotools <SOURCE_DIR>
     CONFIGURE_COMMAND <SOURCE_DIR>/configure ${cppflags} ${ldflags}
-         --prefix=${CMAKE_INSTALL_PREFIX} ${ibv}
+         --without-ncurses --disable-all-programs --enable-libuuid
+         --disable-bash-completion --prefix=${CMAKE_INSTALL_PREFIX}
     UPDATE_COMMAND ""
 )
 
