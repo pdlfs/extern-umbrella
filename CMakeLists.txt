@@ -327,7 +327,7 @@ if (CMAKE_BUILD_LIBEV)
 # libev
 #
 GenDownloadConfig (libev_download libev libev-4.22.tar.gz
-    URL http://dist.schmorp.de/libev/libev-4.22.tar.gz
+    URL http://dist.schmorp.de/libev/Attic/libev-4.22.tar.gz
     URL_MD5 bf0007e37240103d3c2be80ca9bee3f9
     ### GIT_TAG master
 )
