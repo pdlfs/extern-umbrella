@@ -302,7 +302,12 @@ if (EXISTS ${argopatch})
 endif ()
 
 GenDownloadConfig (argobots_download argobots argobots.tar.gz
-    GIT_REPOSITORY "http://git.mcs.anl.gov/argo/argobots.git"
+    ###GIT_REPOSITORY "https://github.com/pmodels/argobots"
+    # XXX: this is TMP until argobots issue #26 is fixed
+    # https://xgitlab.cels.anl.gov/sds/abt-snoozer#dependencies
+    # https://github.com/pmodels/argobots/issues/26
+    GIT_REPOSITORY "https://github.com/carns/argobots.git"
+    GIT_TAG dev-get-dev-basic
     ### GIT_TAG master
 )
 
