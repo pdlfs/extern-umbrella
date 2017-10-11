@@ -1,6 +1,6 @@
---- configure.orig	2016-06-10 11:18:24.000000000 -0500
-+++ configure	2016-06-10 11:18:42.000000000 -0500
-@@ -5446,7 +5446,7 @@
+--- abt-snoozer/configure.orig	2017-10-11 09:25:53.000000000 -0400
++++ abt-snoozer/configure	2017-10-11 09:26:01.000000000 -0400
+@@ -16422,7 +16422,7 @@
                  CPPFLAGS="$CPPFLAGS -I${with_libev}/include"
                  # note: add rpath too because stock libev install uses
                  # shared libs
