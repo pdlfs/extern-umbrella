@@ -69,12 +69,6 @@ umbrella_opt_default (OFI_TAG "v1.5.0")
 # any additional cache variables we want to add that are not already
 # part of the umbrella?
 #
-# XXXCDC: TMP until xgitlab @ anl fixes their ssl
-umbrella_opt_default (ABT_SNOOZER_REPO 
-                "https://github.com/chuckcranor/chuckcranor/abt-snoozer.git")
-umbrella_opt_default (MARGO_REPO 
-                "https://github.com/chuckcranor/chuckcranor/margo.git")
-
 # XXX: bake bulk isn't public
 umbrella_opt_default (BAKE_BULK_REPO 
                 "git@xgitlab.cels.anl.gov:sds/margo.git")
