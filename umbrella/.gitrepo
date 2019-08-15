@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:pdlfs/umbrella.git
 	branch = master
-	commit = e97ba5e641314c441cf97d7d39232b88f2a5d6b9
-	parent = 2e913694774b609e307443191d333af136b0c502
+	commit = 876d99e8d545d8480b8b21ede3fb211c1d5964ed
+	parent = 551e2c0b4b1687e11fc195e2b7fbea160bf423f6
 	method = merge
 	cmdver = 0.4.0
