@@ -65,13 +65,6 @@ umbrella_opt_default (CCI_TAG "3ab663e0")
 umbrella_opt_default (MERCURY_TAG "0e810a91")         # Sep 2017
 umbrella_opt_default (OFI_TAG "v1.5.0")
 
-#
-# any additional cache variables we want to add that are not already
-# part of the umbrella?
-#
-# XXX: bake bulk isn't public
-umbrella_opt_default (BAKE_BULK_REPO 
-                "git@xgitlab.cels.anl.gov:sds/margo.git")
 
 #
 # set other configs before we start pulling in the pieces...
@@ -88,7 +81,7 @@ include (umbrella/abt-snoozer)
 include (umbrella/argobots)
 include (umbrella/autoconf)
 include (umbrella/automake)
-include (umbrella/bake-bulk)
+include (umbrella/bake)
 include (umbrella/bmi)
 include (umbrella/cci)
 include (umbrella/gcc)
@@ -109,7 +102,7 @@ include (umbrella/snappy)
 #
 set_property (TARGET autoconf PROPERTY EXCLUDE_FROM_ALL True)
 set_property (TARGET automake PROPERTY EXCLUDE_FROM_ALL True)
-set_property (TARGET bake-bulk PROPERTY EXCLUDE_FROM_ALL True)
+set_property (TARGET bake PROPERTY EXCLUDE_FROM_ALL True)
 set_property (TARGET gcc PROPERTY EXCLUDE_FROM_ALL True)
 set_property (TARGET libtool PROPERTY EXCLUDE_FROM_ALL True)
 set_property (TARGET mpich PROPERTY EXCLUDE_FROM_ALL True)
