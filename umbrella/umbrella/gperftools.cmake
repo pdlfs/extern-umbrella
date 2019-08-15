@@ -23,7 +23,7 @@ umbrella_defineopt (GPERFTOOLS_TAR "gperftools-${GPERFTOOLS_TAG}.tar.gz"
     STRING "GPERFTOOLS cache tar file")
 
 umbrella_defineopt (GPERFTOOLS_FRAMEPOINTER "off"
-                    BOOLEAN "enable frame pointer")
+                    BOOL "enable frame pointer")
 
 if (GPERFTOOLS_FRAMEPOINTER)
     set (GPERFTOOLS_FPFLAGS "--enable-frame-pointers")
@@ -48,7 +48,7 @@ umbrella_patchcheck (GPERFTOOLS_PATCHCMD gperftools)
 #
 ExternalProject_Add (gperftools ${GPERFTOOLS_DOWNLOAD} ${GPERFTOOLS_PATCHCMD}
     CONFIGURE_COMMAND <SOURCE_DIR>/configure ${UMBRELLA_COMP}
-                      ${UMBRELLA_CPPFLAGS} ${UMBRELLA_LDFLAG}
+                      ${UMBRELLA_CPPFLAGS} ${UMBRELLA_LDFLAGS}
                       --prefix=${CMAKE_INSTALL_PREFIX}
                       ${GPERFTOOLS_FPFLAGS}
     UPDATE_COMMAND "")

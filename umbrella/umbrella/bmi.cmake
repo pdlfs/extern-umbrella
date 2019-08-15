@@ -15,7 +15,7 @@ if (NOT TARGET bmi)
 #
 # umbrella option variables
 #
-umbrella_defineopt (BMI_REPO "http://git.mcs.anl.gov/bmi.git"
+umbrella_defineopt (BMI_REPO "https://xgitlab.cels.anl.gov/sds/bmi"
                     STRING "BMI GIT repository")
 umbrella_defineopt (BMI_TAG "master" STRING "BMI GIT tag")
 umbrella_defineopt (BMI_TAR "bmi-${BMI_TAG}.tar.gz" STRING "BMI cache tar file")
@@ -33,7 +33,7 @@ umbrella_patchcheck (BMI_PATCHCMD bmi)
 #
 ExternalProject_Add (bmi ${BMI_DOWNLOAD} ${BMI_PATCHCMD}
     CONFIGURE_COMMAND <SOURCE_DIR>/configure ${UMBRELLA_COMP}
-                      ${UMBRELLA_CPPFLAGS} ${UMBRELLA_LDFLAG}
+                      ${UMBRELLA_CPPFLAGS} ${UMBRELLA_LDFLAGS}
                       --prefix=${CMAKE_INSTALL_PREFIX}
                       --enable-shared --enable-bmi-only
     UPDATE_COMMAND "")

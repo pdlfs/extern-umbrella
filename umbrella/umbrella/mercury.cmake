@@ -9,9 +9,12 @@
 #  MERCURY_TAG  - tag to checkout of git
 #  MERCURY_TAR  - cache tar file name (default should be ok)
 #
+#  MERCURY_GNI_USEUDREG - Force use of udreg instead of internal MR cache
 #  MERCURY_OPA - force use of OPA atomic lib
 #  MERCURY_POST_LIMIT - enable post limit
 #  MERCURY_SELF_FORWARD - enable self forward thread
+#  MERCURY_VERBOSE_ERROR - enable verbose error
+#  MERCURY_STATS - enable stats
 #  MERCURY_CHECKSUM - enable checksuming
 #
 #  MERCURY_NA_INITIALLY_ON - cmake list of NAs that are initally enabled
@@ -34,9 +37,13 @@ umbrella_defineopt (MERCURY_TAR "mercury-${MERCURY_TAG}.tar.gz"
 #
 # non-na options
 #
+umbrella_defineopt (MERCURY_GNI_USEUDREG "ON" BOOL
+                    " Force use of udreg instead of internal MR cache")
 umbrella_defineopt (MERCURY_OPA "OFF" BOOL "Force use of OPA atomic lib")
 umbrella_defineopt (MERCURY_POST_LIMIT "ON" BOOL "Enable post limit")
 umbrella_defineopt (MERCURY_SELF_FORWARD "OFF" BOOL "Enable self forward thread")
+umbrella_defineopt (MERCURY_VERBOSE_ERROR "ON" BOOL "Enable verbose error")
+umbrella_defineopt (MERCURY_STATS "OFF" BOOL "Enable stats reporting")
 umbrella_defineopt (MERCURY_CHECKSUM "OFF" BOOL "Enable checksuming")
 
 #
@@ -68,6 +75,8 @@ set (MERCURY_CMAKE_ARGS -DNA_USE_MPI=OFF -DNA_USE_SM=${MERCURY_SM}
      -DMERCURY_USE_SELF_FORWARD:BOOL=${MERCURY_SELF_FORWARD}
      -DMERCURY_ENABLE_POST_LIMIT:BOOL=${MERCURY_POST_LIMIT}
      -DMERCURY_USE_BOOST_PP=ON -DMERCURY_USE_CHECKSUMS:BOOL=${MERCURY_CHECKSUM}
+     -DMERCURY_ENABLE_VERBOSE_ERROR:BOOL=${MERCURY_VERBOSE_ERROR}
+     -DMERCURY_ENABLE_STATS:BOOL=${MERCURY_STATS}
      -DNA_USE_BMI=${MERCURY_BMI} -DNA_USE_CCI=${MERCURY_CCI}
      -DNA_USE_OFI=${MERCURY_OFI})
 
@@ -90,6 +99,10 @@ if (MERCURY_CCI)
 endif (MERCURY_CCI)
 
 if (MERCURY_OFI)
+    if (DEFINED ENV{CRAYPE_VERSION})
+        list (APPEND MERCURY_CMAKE_ARGS
+              -DNA_OFI_GNI_USE_UDREG=${MERCURY_GNI_USEUDREG})
+    endif ()
     list (APPEND MERCURY_DEPENDS ofi)
     include (umbrella/ofi)
 endif (MERCURY_OFI)
@@ -99,10 +112,15 @@ endif (MERCURY_OFI)
 #
 message (STATUS "  Mercury config:")
 message (STATUS "    HG self-forward: ${MERCURY_SELF_FORWARD}")
+message (STATUS "    HG verbose: ${MERCURY_VERBOSE_ERROR}")
+message (STATUS "    HG stats: ${MERCURY_STATS}")
 message (STATUS "    HG post limit: ${MERCURY_POST_LIMIT}")
 message (STATUS "    HG force OPA: ${MERCURY_OPA}")
 message (STATUS "    NAs: bmi=${MERCURY_BMI} cci=${MERCURY_CCI}")
 message (STATUS "    NAs: ofi=${MERCURY_OFI} sm=${MERCURY_SM}")
+if (DEFINED ENV{CRAYPE_VERSION})
+    message (STATUS "    NAs: ofi_udreg=${MERCURY_GNI_USEUDREG}")
+endif ()
 
 #
 # generate parts of the ExternalProject_Add args...
